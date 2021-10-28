@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wizard's Tower</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+</head>
+
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p>You are standing over the old cauldron.</p>
+            <p>It's a little bit rusted around the base, but otherwise seems perfectly usable.</p>
+
+            <div class="separator"></div>
+
+            <div class="ing-container">
+                <div class="adders"></div>
+                <div class="removers"></div>
+            </div>
+
+            <p id="cook">Light the cauldron</p>
+            
+            <div class="separator"></div>
+
+            <p><a href="pnrm.html">Back</a></p>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+    <script src="../../dictionary.js"></script>
+    <script src="../../sidebar.js"></script>
+    <script src="../../menu.js"></script>
+    <script src="../../other.js"></script>
+    <script>
+        let validCombinations = [
+            {
+                recipe: ['feathers', 'insect wings', 'ash'],
+                result: 'cauldron-result-lvpn'
+            },
+            {
+                recipe: ['sugar', 'cinnamon', 'flowers'],
+                result: 'cauldron-result-hug'
+            }
+        ];
+
+        
+        let itemsInCauldron = [];
+
+        document.querySelector('#cook').addEventListener('click', () => {
+            // remove items from inventory
+            // check if items in cauldron are a valid combination
+            // navigate to appropriate potion-created page
+            itemsInCauldron.forEach(item => {
+                removeItem(item);
+            });
+
+            if (checkValidCombo(itemsInCauldron)) {
+                window.location.replace(`${checkValidCombo(itemsInCauldron)}.html`);
+            } else {
+                window.location.replace(`cauldron-result-failed.html`);
+            }
+        });
+
+        function checkValidCombo(added) {
+            if (added.length === 3) {
+                for (combo of validCombinations) {
+                    if (combo.recipe.includes(added[0]) && combo.recipe.includes(added[1]) && combo.recipe.includes(added[2])) {
+                        return combo.result;
+                    }
+                }
+            } else {
+                return false;
+            }
+
+            return false;
+        }
+
+        
+
+        class Adder extends HTMLElement {
+            constructor(itemName) {
+                super();
+                this.itemName = itemName;
+            }
+
+            connectedCallback() {
+                this.fillHTML();
+
+                this.addEventListener('click', () => {
+                    this.createRemover();
+                    this.remove();
+                });
+            }
+
+            fillHTML() {
+                this.innerHTML = `Add ${getItem(this.itemName).translatable ? '<scribbles->' + this.itemName + '</scribbles->' : this.itemName}`;
+            }
+
+            createRemover() {
+                document.querySelector('.removers').appendChild(new Remover(this.itemName));
+                itemsInCauldron.push(this.itemName);
+                console.log('itemsInCauldron', itemsInCauldron);
+            }
+        } customElements.define('adder-', Adder);
+
+
+        class Remover extends HTMLElement {
+            constructor(itemName) {
+                super();
+                this.itemName = itemName;
+            }
+
+            connectedCallback() {
+                this.fillHTML();
+
+                this.addEventListener('click', () => {
+                    this.createAdder();
+                    this.remove();
+                });
+            }
+
+            fillHTML() {
+                this.innerHTML = `Remove ${getItem(this.itemName).translatable ? '<scribbles->' + this.itemName + '</scribbles->' : this.itemName}`;
+            }
+
+            createAdder() {
+                document.querySelector('.adders').appendChild(new Adder(this.itemName));
+                
+                // remove from itemsInCauldron
+                for (let i = 0; i < itemsInCauldron.length; i++) {
+                    // console.log(i, itemsInCauldron[i], this.itemName)
+                    if (itemsInCauldron[i] === this.itemName) {
+                        itemsInCauldron.splice(i, 1);
+                    }
+                }
+                console.log('itemsInCauldron', itemsInCauldron);
+            }
+        } customElements.define('remover-', Remover);
+
+
+
+
+
+        // populate adders
+        getCurrentIngredients().forEach(item => {
+            document.querySelector('.adders').appendChild(new Adder(item.name));
+
+            // document.querySelector('.adder:last-of-type').addEventListener('click', e => { // not attaching to each = only the last in the list overall
+            //     console.log('clicked', item.name);
+            //     document.querySelector('.removers').innerHTML += createRemover(item);
+            //     // add functionality to remover
+            //     removeItem(item.name);
+            //     e.target.remove();
+            // });
+        });
+    </script>
+
+</body>
+
+</html>

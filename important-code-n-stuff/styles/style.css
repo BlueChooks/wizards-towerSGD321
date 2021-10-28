@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+@import url("./menu.css");
+@import url("./sidebar.css");
+
+@font-face {
+    font-family: 'Temphis Brick';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Temphis Brick'), url('Temphis Brick.woff') format('woff');
+}
+
+:root {
+    --bg-col: #333;
+    --popup-bg-col: #555;
+    --side-bg-col: #555;
+    --secondary-side-bg-col: #777;
+
+    --text-col: #fff;
+    --text-fade-col: #999;
+    --link-col: #66ccff;
+    --scrib-col: #ffcc00;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-col);
+    color: var(--text-col);
+}
+
+a, #cook, adder-, remover-, a > scribbles- {
+    color: var(--link-col);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+p:not(first-of-type) {
+    margin-top: 10px;
+}
+
+.separator {
+    flex-grow: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+    padding: 3% 3% 10% 3%;
+}
+
+#story {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 0 20px;
+}
+
+/* =====----- scribbles -----===== */
+/* scribbles- {
+    color: var(--scrib-col);
+}
+
+.untrans span {
+    font-family: 'Temphis Brick';
+}
+
+w- {
+    position: relative;
+}
+
+w-:not(:last-child) {
+    margin-right: 5px;
+}
+
+.notepad {
+    position: absolute;
+    right: -300px;
+    top: -50px;
+    display: none;
+    z-index: 10;
+    width: 300px;
+}
+
+.notepad > p {
+    color: var(--text-col);
+    text-align: left;
+}
+
+.notepad > * {
+    width: 100%;
+    text-align: center;
+}
+
+.notepad h1 {
+    font-size: 16pt;
+    margin-bottom: 10px;
+    font-family: 'Temphis Brick';
+}
+
+.visible-pad {
+    background-color: var(--popup-bg-col);
+    padding: 10px;
+    border-radius: 10px 0 0 10px;
+}
+
+.visible-pad .notepad{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--popup-bg-col);
+    padding: 10px 20px;
+    border-radius: 10px;
+} */
+
+item-pickup {
+    cursor: pointer;
+    color: var(--link-col);
+}
+
+/* =====----- documents -----===== */
+.doc {
+    margin-left: 50px;
+}
+
+.mum-handwriting {
+    font-style: italic;
+}
+
+.araxus-handwriting {
+    font-style: italic;
+}
+
+.secretary-handwriting {
+    font-family: 'Cutive Mono', monospace;
+    font-size: 13pt;
+}
+
+
+/* =====----- cauldron -----===== */
+.ing-container {
+    display: flex;
+    flex-direction: row;
+    /* padding: 0 30px; */
+    /* background-color: var(--side-bg-col); */
+}
+
+.adders, .removers {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    min-width: 300px;
+    min-height: 200px;
+    padding: 10px;
+}
+
+.adders {
+    border-right: 1px solid var(--text-fade-col);
+}
+
+adder-, remover- {
+    margin: 5px;
+}
