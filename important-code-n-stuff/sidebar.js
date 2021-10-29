@@ -39,6 +39,30 @@ let inventory = [ // keep untranslatable items at top
         held: false
     },
     {
+        name: 'salt',
+        translatable: true,
+        ingredient: true,
+        held: false
+    },
+    {
+        name: 'belladonna leaves',
+        translatable: true,
+        ingredient: true,
+        held: false
+    },
+    {
+        name: 'nightshade berries',
+        translatable: true,
+        ingredient: true,
+        held: false
+    },
+    {
+        name: 'withering potion',
+        translatable: true,
+        ingredient: true,
+        held: false
+    },
+    {
         name: 'levitation potion',
         translatable: true,
         ingredient: false,
