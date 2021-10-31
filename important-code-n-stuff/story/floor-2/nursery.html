@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Wizard's Tower</title>
     <link rel="stylesheet" href="../../styles/style.css" />
 </head>
-
 <body>
     <main>
         <menu-></menu->
         <div id="story">
-            <p>You have opened the drawer labelled <scribbles->'salt'</scribbles->.</p>
-            <p>It is full of coarse white grains that smell strongly of the ocean.</p>
-
-            <p id="pickup" class="hidden">
-                <item-pickup item="salt">Take <scribbles->salt</scribbles->
-                </item-pickup>
-            </p>
-            <p id="held" class="hidden">You already have <scribbles->salt</scribbles-> in your inventory.</p>
-
+            <p>You are in the nursery.</p>
+            <p>Large glass windows line one wall, but only a little light filters through their coating of grime. The room is filled with <a href="nursery-pots.html">plant pots</a>.</p>
+            <p>A workbench is by the door, strewn with papers and gardening equipment. A <a href="mum-letter2.html">letter</a> sits atop the clutter.</p>
+            <p>There is a large <a href="tree.html">tree</a> in one corner that has outgrown its pot and broken through the exterior wall. The floor sags underneath it, and stagnant water has pooled at its base.</p>
+            <p id="pickup" class="hidden"><item-pickup item="water">Take <scribbles->water</scribbles-></item-pickup></p>
+            <p id="held" class="hidden">You already have <scribbles->water</scribbles-> in your inventory.</p>
             <div class="separator"></div>
-
-            <p><a href="cabinet.html">Close the drawer</a></p>
-            <p><a href="pnrm.html">Back to the room</a></p>
+            <p><a href="hub2.html">Back to the study</a></p>
         </div>
 
         <div id="sidebar"></div>
@@ -42,7 +35,7 @@
         });
 
         function checkHeld() {
-            if (!getItem('salt').held) {
+            if (!getItem('water').held) {
                 pickup.classList.remove('hidden');
                 held.classList.add('hidden');
             } else {
@@ -53,5 +46,4 @@
     </script>
 
 </body>
-
 </html>

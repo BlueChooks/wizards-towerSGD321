@@ -13,6 +13,10 @@
                 <!-- <p>Your search has taken many years, through many historians and wizards, but in the end, it was the con-man antique dealer that had the answer all along. When you've looted the tower and become fabulously wealthy, maybe you'll even go back and pay for the <a href="map.html">map</a> you stole from him ...</p> -->
                 <p>Your search has taken many years, through many historians and wizards, but in the end, that con-man antique-dealer really did have the answer. Maybe after you've looted the tower and become fabulously wealthy, you'll even go back and pay for the map you stole from him.</p>
                 <p><a href="./floor-1/hub1.html">Go inside</a></p>
+
+                <div class="separator"></div>
+
+                <p id="lv2-cheat"><a>level 2</a></p>
             </div>
 
             <div id="sidebar"></div>
@@ -21,6 +25,14 @@
         <script src="../sidebar.js"></script>
         <script src="../menu.js"></script>
         <script src="../other.js"></script>
+        <script>
+            let link2 = document.getElementById('lv2-cheat');
+
+            link2.addEventListener('click', () => {
+                clearLevel(1);
+                location.replace('./floor-2/hub2.html');
+            });
+        </script>
 
     </body>
 </html>

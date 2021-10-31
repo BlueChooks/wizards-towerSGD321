@@ -9,6 +9,12 @@ let inventory = [ // keep untranslatable items at top
         held: false
     },
     {
+        name: 'fig leaves',
+        translatable: true,
+        ingredient: true,
+        held: false
+    },
+    {
         name: 'feathers',
         translatable: true,
         ingredient: true,
@@ -22,6 +28,12 @@ let inventory = [ // keep untranslatable items at top
     },
     {
         name: 'insect wings',
+        translatable: true,
+        ingredient: true,
+        held: false
+    },
+    {
+        name: 'nightshade berries',
         translatable: true,
         ingredient: true,
         held: false
@@ -45,13 +57,13 @@ let inventory = [ // keep untranslatable items at top
         held: false
     },
     {
-        name: 'belladonna leaves',
+        name: 'water',
         translatable: true,
         ingredient: true,
         held: false
     },
     {
-        name: 'nightshade berries',
+        name: 'hemlock leaves',
         translatable: true,
         ingredient: true,
         held: false
@@ -59,7 +71,7 @@ let inventory = [ // keep untranslatable items at top
     {
         name: 'withering potion',
         translatable: true,
-        ingredient: true,
+        ingredient: false,
         held: false
     },
     {
@@ -67,7 +79,13 @@ let inventory = [ // keep untranslatable items at top
         translatable: true,
         ingredient: false,
         held: false
-    }
+    },
+    {
+        name: 'blooming potion',
+        translatable: true,
+        ingredient: false,
+        held: false
+    },
 ];
 
 let sidebar = document.getElementById('sidebar');

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wizard's Tower</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+</head>
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p>You pour the withering potion on the plant and it immediately starts to shrivel and crack. Its dying branches retreat from the <a href="floor-2-staircase-clear.html">staircase</a> and uncover the nearby furniture. After a few seconds, all that remains are a few thorny twigs hanging limply over the sides of the pots.</p>
+            <p>Now that the plant is dead, you can step over its remains and access a small side-table that holds a grubby <a href="journal-3.html">journal</a>.</p>
+
+            <div class="separator"></div>
+            <p><a href="study-pots.html">Back</a></p>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+    <script src="../../dictionary.js"></script>
+    <script src="../../sidebar.js"></script>
+    <script src="../../menu.js"></script>
+    <script src="../../other.js"></script>
+    <script>
+        removeItem('withering potion');
+        clearLevel(2);
+    </script>
+
+</body>
+</html>

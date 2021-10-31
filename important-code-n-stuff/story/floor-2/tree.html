@@ -10,19 +10,17 @@
     <main>
         <menu-></menu->
         <div id="story">
-            <p>You have opened the drawer labelled <scribbles->'salt'</scribbles->.</p>
-            <p>It is full of coarse white grains that smell strongly of the ocean.</p>
+            <p>The tree's trunk is gnarled with age and as wide as you are. There are holes in the floor where the roots have penetrated the stone - you can see the broken stairwell through the largest of them. Sunlight filters through the large hole in the side of the tower where the tree has broken through.</p>
 
             <p id="pickup" class="hidden">
-                <item-pickup item="salt">Take <scribbles->salt</scribbles->
+                <item-pickup item="fig leaves">Take <scribbles->fig leaves</scribbles->
                 </item-pickup>
             </p>
-            <p id="held" class="hidden">You already have <scribbles->salt</scribbles-> in your inventory.</p>
+            <p id="held" class="hidden">You already have <scribbles->fig leaves</scribbles-> in your inventory.</p>
 
             <div class="separator"></div>
 
-            <p><a href="cabinet.html">Close the drawer</a></p>
-            <p><a href="pnrm.html">Back to the room</a></p>
+            <p><a href="nursery.html">Back</a></p>
         </div>
 
         <div id="sidebar"></div>
@@ -42,7 +40,7 @@
         });
 
         function checkHeld() {
-            if (!getItem('salt').held) {
+            if (!getItem('fig leaves').held) {
                 pickup.classList.remove('hidden');
                 held.classList.add('hidden');
             } else {

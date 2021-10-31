@@ -10,13 +10,14 @@
     <main>
         <menu-></menu->
         <div id="story">
-            <p>You are looking at the plant pots in the second-floor study. </p>
-            <p class="blocked">A tangled mass of thorny branches spills from the pots. It covers a large section of the walls and floor, makes nearby furniture inaccessible, and completely blocks the <a href="floor-2-staircase.html">staircase.</a></p>
+            <p>You are looking at the plant pots in the second-floor study.</p>
+            <p class="blocked">A tangled mass of thorny branches spills from the pots. It covers a large section of the walls and floor, making the nearby staircase and furniture completely inaccessible.</p>
             <p class="blocked">Peering through the thorns at the pots themselves, you can just make out a label that says 'Steeltwig'.</p>
 
-            <p id="has-potion"><a>Use Withering Potion</a></p>
+            <p id="solution" class="hidden"><a href="study-pots-withering.html">Use Withering Potion</a></p>
 
-            <p id="plants-cleared" class="hidden">Where once there was an enormous mass of thorny branches, there are now only a handful of thin and drooping twigs. The pots are labelled 'steeltwig'.</p>
+            <p class="hidden plants-cleared">Where once there was an enormous mass of thorny branches, there are now only a handful of thin and drooping twigs. The pots are labelled 'Steeltwig'.</p>
+            <p class="hidden plants-cleared">Now that the overgrown plant has been cleared, you can reach a small table to the side with a <a href="journal-3.html">journal</a> on top.</p>
             <div class="separator"></div>
             <p><a href="hub2.html">Back</a></p>
         </div>
@@ -29,12 +30,21 @@
     <script src="../../other.js"></script>
     <script>
         let blocked = document.querySelectorAll('.blocked');
-        let hasPotion = document.querySelector('#has-potion');
-        let cleared = document.querySelector('.plants-cleared');
+        let cleared = document.querySelectorAll('.plants-cleared');
 
-        //if unblocked, add .hidden to .blocked
-        //if potion and not unblocked, remove .hidden from potion
-        //if unblocked, remove .hidden to #plants-cleared
+        if (getCurrentInv().includes(getItem('withering potion')) && !checkLevelCleared(2)) {
+            document.querySelector('#solution').classList.remove('hidden');
+        }
+
+        if (checkLevelCleared(2)) {
+            cleared.forEach(p => {
+                p.classList.remove('hidden');
+            });
+
+            blocked.forEach(p => {
+                p.classList.add('hidden');
+            });
+        }
     </script>
 
 </body>
