@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Wizard's Tower</title>
     <link rel="stylesheet" href="../../styles/style.css" />
 </head>
-
 <body>
     <main>
         <menu-></menu->
         <div id="story">
-            <p>You are standing over the old cauldron.</p>
-            <p>It's a little bit rusted around the base, but otherwise seems perfectly usable.</p>
+            <p>You are looking at a plain wooden bowl. It's empty, but its interior is stained with unidentifiable black splotches.</p>
 
             <div class="separator"></div>
+            <!-- <p class="doc hidden" id="catnip">Add catnip</p>
+            <p class="doc hidden" id="potion">Add sleep potion</p>
+            <p id="bait">Bait the creature</p> -->
 
             <div class="ing-container">
                 <div class="adders"></div>
                 <div class="removers"></div>
             </div>
 
-            <p id="cook">Light the cauldron</p>
-            
-            <div class="separator"></div>
+            <p id="cook" class="hidden">Bait the creature</p>
 
-            <p><a href="pnrm.html">Back</a></p>
+
+            <div class="separator"></div>
+            <p><a href="cat.html">Back</a></p>
         </div>
 
         <div id="sidebar"></div>
@@ -34,62 +34,24 @@
     <script src="../../menu.js"></script>
     <script src="../../other.js"></script>
     <script>
-        let validCombinations = [
-            {
-                recipe: ['feathers', 'insect wings', 'ash'],
-                result: 'cauldron-result-lvpn'
-            },
-            {
-                recipe: ['sugar', 'cinnamon', 'flowers'],
-                result: 'cauldron-result-hug'
-            },
-            {
-                recipe: ['salt', 'hemlock leaves', 'nightshade berries'],
-                result: 'cauldron-result-withering'
-            },
-            {
-                recipe: ['flowers', 'fig leaves', 'water'],
-                result: 'cauldron-result-blooming'
-            },
-            {
-                recipe: ['mint', 'mold spores', 'ash'],
-                result: 'cauldron-result-sleep'
-            }
-        ];
-
+        let catnip = document.getElementById('catnip');
+        let potion = document.getElementById('potion');
+        let bait = document.getElementById('cook');
         
+        // let catnipAdded = false;
+        // let potionAdded = false;
+
         let itemsInCauldron = [];
 
-        document.querySelector('#cook').addEventListener('click', () => {
-            // remove items from inventory
-            // check if items in cauldron are a valid combination
-            // navigate to appropriate potion-created page
-            itemsInCauldron.forEach(item => {
-                removeItem(item);
-            });
 
-            if (checkValidCombo(itemsInCauldron)) {
-                window.location.replace(`${checkValidCombo(itemsInCauldron)}.html`);
+        function displayCook() {
+            if (itemsInCauldron.length > 0) {
+                cook.classList.remove('hidden');
             } else {
-                window.location.replace(`cauldron-result-failed.html`);
+                cook.classList.add('hidden');
             }
-        });
-
-        function checkValidCombo(added) {
-            if (added.length === 3) {
-                for (combo of validCombinations) {
-                    if (combo.recipe.includes(added[0]) && combo.recipe.includes(added[1]) && combo.recipe.includes(added[2])) {
-                        return combo.result;
-                    }
-                }
-            } else {
-                return false;
-            }
-
-            return false;
         }
 
-        
 
         class Adder extends HTMLElement {
             constructor(itemName) {
@@ -113,6 +75,7 @@
             createRemover() {
                 document.querySelector('.removers').appendChild(new Remover(this.itemName));
                 itemsInCauldron.push(this.itemName);
+                displayCook();
                 console.log('itemsInCauldron', itemsInCauldron);
             }
         } customElements.define('adder-', Adder);
@@ -147,6 +110,7 @@
                         itemsInCauldron.splice(i, 1);
                     }
                 }
+                displayCook();
                 console.log('itemsInCauldron', itemsInCauldron);
             }
         } customElements.define('remover-', Remover);
@@ -156,19 +120,26 @@
 
 
         // populate adders
-        getCurrentIngredients().forEach(item => {
-            document.querySelector('.adders').appendChild(new Adder(item.name));
+        if (getItem('catnip').held) {
+            document.querySelector('.adders').appendChild(new Adder('catnip'));
+        }
 
-            // document.querySelector('.adder:last-of-type').addEventListener('click', e => { // not attaching to each = only the last in the list overall
-            //     console.log('clicked', item.name);
-            //     document.querySelector('.removers').innerHTML += createRemover(item);
-            //     // add functionality to remover
-            //     removeItem(item.name);
-            //     e.target.remove();
-            // });
+        if (getItem('sleep potion').held) {
+            document.querySelector('.adders').appendChild(new Adder('sleep potion'));
+        }
+
+        document.getElementById('cook').addEventListener('click', () => {
+            if (itemsInCauldron.includes('catnip') && itemsInCauldron.includes('sleep potion')) {
+                location.replace('cat-solution.html');
+            } else if (itemsInCauldron.includes('catnip')) {
+                location.replace('cat-catnip.html');
+            } else if (itemsInCauldron.includes('sleep potion')) {
+                location.replace('cat-potion.html');
+            } else {
+                location.replace('cat.html');
+            }
         });
+
     </script>
-
 </body>
-
 </html>

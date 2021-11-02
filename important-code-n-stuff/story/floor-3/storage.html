@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wizard's Tower</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+</head>
+
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p>A quick search of the containers yields only old clothing, moth-eaten linen, and a frightening amount of mold spores.</p>
+
+            <p id="pickup">
+                <item-pickup item="mold spores">Take <scribbles->mold spores</scribbles->
+                </item-pickup>
+            </p>
+            <p id="held" class="hidden">You already have <scribbles->mold spores</scribbles-> in your inventory.</p>
+
+            <p>On top of one crate is a <a href="mum-letter3.html">letter</a>.</p>
+
+            <div class="separator"></div>
+
+            <p><a href="hub3.html">Back</a></p>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+    <script src="../../dictionary.js"></script>
+    <script src="../../sidebar.js"></script>
+    <script src="../../menu.js"></script>
+    <script src="../../other.js"></script>
+    <script>
+        let pickup = document.querySelector('#pickup');
+        let held = document.querySelector('#held');
+
+        checkHeld();
+
+        pickup.addEventListener('click', () => {
+            checkHeld();
+        });
+
+        function checkHeld() {
+            if (!getItem('mold spores').held) {
+                pickup.classList.remove('hidden');
+                held.classList.add('hidden');
+            } else {
+                pickup.classList.add('hidden');
+                held.classList.remove('hidden');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

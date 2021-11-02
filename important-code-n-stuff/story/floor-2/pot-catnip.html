@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wizard's Tower</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+</head>
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p>You are looking at the pot labelled 'Catnip'.</p>
+
+            <!-- withered -->
+            <p class="withered">A few dry twigs stick out of the dirt. This plant is long-dead.</p>
+            <p class="hidden" id="use-potion"><a>Sprinkle blooming potion</a></p>
+
+            <!-- sprinkling -->
+            <p id="sprinkling" class="hidden">You sprinkle a little of the blooming potion on the dry twigs, and the plant immediately springs to life. After only a few seconds, it has already grown tall and leafy.</p>
+            <!-- blooming -->
+            <p class="blooming hidden">The catnip plant is dense with small jagged leaves and clusters of tiny purple flowers.</p>
+            <p id="pickup" class="hidden"><item-pickup item="catnip">Take <scribbles->catnip</scribbles-></item-pickup></p>
+            <p id="held" class="hidden">You already have <scribbles->catnip</scribbles-> in your inventory.</p>
+
+            <div class="separator"></div>
+
+            <p><a href="nursery-pots.html">Back</a></p>
+            <p><a href="nursery.html">Back to the nursery</a></p>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+    <script src="../../dictionary.js"></script>
+    <script src="../../sidebar.js"></script>
+    <script src="../../menu.js"></script>
+    <script src="../../other.js"></script>
+    <script>
+        // =====----- take ingredient -----===== //
+        let pickup = document.querySelector('#pickup');
+        let held = document.querySelector('#held');
+
+        pickup.addEventListener('click', () => {
+            checkHeld();
+        });
+
+        function checkHeld() {
+            if (!getItem('catnip').held) {
+                pickup.classList.remove('hidden');
+                held.classList.add('hidden');
+            } else {
+                pickup.classList.add('hidden');
+                held.classList.remove('hidden');
+            }
+        }
+
+        // =====----- withered or blooming -----===== //
+        let withereds = document.querySelectorAll('.withered');
+        let bloomings = document.querySelectorAll('.blooming');
+        let usePotion = document.querySelector('#use-potion');
+
+        if (checkPlantGrown('catnip')) {
+            withereds.forEach(p => p.classList.add('hidden'));
+            bloomings.forEach(p => p.classList.remove('hidden'));
+            checkHeld();
+        } else {
+            withereds.forEach(p => p.classList.remove('hidden'));
+            bloomings.forEach(p => p.classList.add('hidden'));
+
+            if (getItem('blooming potion').held) {
+                usePotion.classList.remove('hidden');
+            }
+        }
+
+        // =====----- sprinkle -----===== //
+        usePotion.addEventListener('click', () => {
+            growPlant('catnip');
+            withereds.forEach(p => p.classList.add('hidden'));
+            bloomings.forEach(p => p.classList.remove('hidden'));
+            usePotion.classList.add('hidden');
+            document.querySelector('#sprinkling').classList.remove('hidden');
+            checkHeld();
+        });
+        
+    </script>
+
+</body>
+</html>

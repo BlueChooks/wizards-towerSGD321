@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wizard's Tower - Cheats</title>
+    <link rel="stylesheet" href="../styles/style.css" />
+</head>
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p>Thanks for playing Wizard's Tower!</p>
+            <p>This page contains some hints for things you might have missed and cheats to help you go back and explore.</p>
+
+            <div class="separator"></div>
+
+            <p>These links will take you to the different floors. Open them in a new tab to keep this page available:</p>
+            <p><a href="./floor-1/hub1.html">Floor-1: Potions and Bed Room</a></p>
+            <p><a href="./floor-2/hub2.html">Floor-2: Study and Nursery</a></p>
+            <p><a href="./floor-3/hub3.html">Floor-3: Attic</a></p>
+            <p><a href="./floor-4/hub4.html">Floor-4: Araxus</a></p>
+
+            <div class="separator"></div>
+
+            <p>These links will give you items. You will need to refresh your game page (not this one!) in order for them to take effect:</p>
+            <p><a id="gain-ings">Obtain all ingredients</a></p>
+            <p><a id="gain-potions">Obtain all potions</a></p>
+            <p><a id="empty-inv">Empty your inventory</a></p>
+
+            <div class="separator"></div>
+
+            <p><a href="floor-4/figure1.html">Did you keep refusing to take the crystal at the end of the game?</a></p>
+            <p><a href="floor-1/mum-letter1.html">Did you make the warm hug potion?</a></p>
+
+            <div class="separator"></div>
+
+            <p>When you're done, <a id="reset-link">reset the game</a> to clear this game's data from your browser's local storage.</p>
+        </div>
+        <div id="sidebar"></div>
+    </main>
+    <script src="../dictionary.js"></script>
+    <script src="../sidebar.js"></script>
+    <script src="../menu.js"></script>
+    <script src="../other.js"></script>
+    <script>
+        localStorage.clear();
+
+        let gainIngs = document.getElementById('gain-ings');
+        let gainPots = document.getElementById('gain-potions');
+        let emptyInvLink = document.getElementById('empty-inv');
+        let resetLink = document.getElementById('reset-link');
+
+        gainIngs.addEventListener('click', () => {
+            inventory.forEach(item => {
+                if (item.ingredient && !item.held) {
+                    item.held = true;
+                }
+            });
+            saveInv();
+        });
+
+        gainPots.addEventListener('click', () => {
+            inventory.forEach(item => {
+                if (!item.ingredient && !item.held) {
+                    item.held = true;
+                }
+            });
+            saveInv();
+        });
+
+        emptyInvLink.addEventListener('click', () => emptyInv());
+
+        resetLink.addEventListener('click', () => {
+            localStorage.clear();
+            location.replace('reset.html')
+        });
+    </script>
+
+</body>
+</html>

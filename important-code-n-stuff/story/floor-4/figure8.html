@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TAKE THE CRYSTAL</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+</head>
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p><a href="take.html">TAKE THE CRYSTAL</a></p>
+            <div class="separator"></div>
+            <p><a href="take.html">TAKE THE CRYSTAL</a></p>
+            <p><a href="take.html">TAKE THE CRYSTAL</a></p>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+    <script src="../../dictionary.js"></script>
+    <script src="../../sidebar.js"></script>
+    <script src="../../menu.js"></script>
+    <script src="../../other.js"></script>
+    <script>
+
+        sidebar.innerHTML = `
+                    <h1 class="sidebar-heading">TAKE THE CRYSTAL</h1>
+                    <div id="inv"></div>
+                    <h1 class="sidebar-heading">TAKE THE CRYSTAL</h1>
+                    <textarea id="gen-notes" rows="20" cols="30">${localStorage.getItem('gen-notes') ? localStorage.getItem('gen-notes') : ''}</textarea>
+                    <button id="reset">TAKE THE CRYSTAL</button>
+                    `;
+        
+        for (i = 0; i < getCurrentInv().length; i++) {
+            document.getElementById('inv').innerHTML += '<p>TAKE THE CRYSTAL</p>'
+        }
+
+        if(localStorage.getItem('gen-notes')) {
+            document.getElementById('gen-notes').innerText = 'TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL TAKE THE CRYSTAL';
+        }
+
+    </script>
+
+</body>
+</html>

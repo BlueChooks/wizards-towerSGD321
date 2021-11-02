@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wizard's Tower</title>
+    <link rel="stylesheet" href="../../styles/style.css" />
+</head>
+<body>
+    <main>
+        <menu-></menu->
+        <div id="story">
+            <p>The third floor is dim and thick with dust. The only light in the room filters through holes in moth-eaten curtains drawn over small windows. There is a <a href="invitation-letter.html">letter</a> on the floor near the top of the staircase.</p>
+            <p>The room is filled with scattered <a href="storage.html">storage containers</a>. To your <a href="nest.html">right</a>, a group of barrels seems to be arranged around a pile of rumpled bedding like a makeshift nest.</p>
+            <p>A large number of crates are piled from floor to ceiling right across the centre of the room, completely separating one half from the other. The only way through seems to be a <a id="stair-link" href="cat.html">small opening</a> to the side, just big enough for you to crawl through.</p>
+            <div class="separator"></div>
+            <p><a href="../floor-2/hub2.html">Go downstairs</a></p>
+        </div>
+
+        <div id="sidebar"></div>
+    </main>
+    <script src="../../dictionary.js"></script>
+    <script src="../../sidebar.js"></script>
+    <script src="../../menu.js"></script>
+    <script src="../../other.js"></script>
+    <script>
+        let link = document.getElementById('stair-link');
+
+        if (checkLevelCleared(3)) {
+            link.setAttribute('href', 'cat-asleep.html');
+        }
+    </script>
+
+</body>
+</html>
